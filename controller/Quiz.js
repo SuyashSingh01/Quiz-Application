@@ -2,9 +2,6 @@ const result = require('../models/Result');
 const test = require('../models/Quiz');
 const axios = require("axios");
 
-
-
-
 // home 
 exports.home = async (req, res) => {
     const testid = req.body.pin;
@@ -29,8 +26,7 @@ exports.home = async (req, res) => {
     questions.data.time = doc.time;
     if (questions.data.response_code == 0) return res.send(questions.data);
     else
-        return res
-            .status(400)
+        return res.status(400)
             .send({ message: "Couldn't fetch test details. Try again!" });
 };
 
@@ -89,8 +85,8 @@ exports.submited = async (req, res) => {
         .catch((err) => res.status(400).json("error : " + err));
 }
 
-//   gettest
-exports.gettest = async (req, res) => {
+//   getquiz
+exports.getquiz = async (req, res) => {
     const email = req.user.email;
     try {
         const doc = await test.find({ email }).sort("-created").exec();

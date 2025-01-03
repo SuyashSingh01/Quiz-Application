@@ -44,30 +44,7 @@ exports.auth = (req, res, next) => {
         })
     }
 }
-// both middleware are using for authorization task
 
-// for student middleware
-exports.isStudent = (req, res, next) => {
-    try {
-        // check the role of student which are placed in req.user as previous middleware  as decoded 
-        if (req.user.role !== 'Student') {
-            return res.status(403).json({
-                success: false,
-                message: "You are not allowed to access this Student route"
-            })
-        }
-        next();
-
-    }
-    catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            success: false,
-            message: "Something Went Wrong while Verfiying the Token",
-            error: err.message
-        })
-    }
-}
 
 
 // for Admin middleware

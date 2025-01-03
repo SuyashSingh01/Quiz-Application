@@ -3,7 +3,7 @@ const router=express.Router();
 
 
 const {login,signup}=require('../controller/Auth');
-const {auth,isAdmin,isStudent,isVisitor}=require('../middleware/auth')
+const {auth,isAdmin,isVisitor}=require('../middleware/auth')
 
 
 
@@ -21,10 +21,9 @@ router.get('/test',auth,(req,res)=>{
 })
 
 // Protected Routes
-
-router.get('/student',auth,isStudent,(req,res)=>{
+router.get('/',auth,isVisitor,(req,res)=>{
     res.json({
-        message:"Welcome to Protected Routes of Student",
+        message:"Welcome to Protected Routes of Visitor",
         success:true
     })
 })
@@ -34,12 +33,5 @@ router.get('/admin',auth,isAdmin,(req,res)=>{
         success:true
     })
 })
-// router.get('/visitor',auth,isVisitor,(req,res)=>{
-//     res.json({
-//         message:"Welcome to Protected Routes of Visitor",
-//         success:true
-//     })
-// })
-
 
 module.exports=router;

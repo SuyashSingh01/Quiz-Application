@@ -40,9 +40,6 @@ exports.signup = async (req, res) => {
             role
         });
 
-        // not needed
-        //    newuser.password=undefined;
-        // return response with token and userdata
         return res.status(200).json({
             message: 'User is created successfully',
             success: true,
@@ -132,6 +129,3 @@ exports.login = async (req, res) => {
         })
     }
 }
-
-// Another way to exports
-// module.exports={login,signup};

@@ -11,13 +11,18 @@ app.use(cookiesparser());
 
 app.use(express.json());
 // db connection
-const dbconnect=require('./config/database').connect();
-// app.use(express.urlencoded({extended:false}));
+const dbconnect=require('./config/database')
+dbconnect().connect();;
+app.use(express.urlencoded({extended:true}));
 
 
 // import routes
 const user=require('./Routes/user');
+const quiz=require('./Routes/quiz');
+
 app.use('/api/v1',user);
+app.use('/api/v1',quiz);
+
 
 // server activiation
 app.listen(Port,()=>{
